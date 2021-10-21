@@ -1,0 +1,35 @@
+#fichero{
+  display: none;
+}
+
+.subir{
+  display: flex;
+}
+
+.subirPreview{
+  display: none;
+  justify-content: center;
+  padding: 20px;
+}
+
+.subir-label{
+  color: white;
+  height: 60px;
+  width: 100%;
+  background-color: #f5af09;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+}
+
+.subir-label i{
+  margin: 20px;
+}
+
+.btn{
+  margin: 30px;
+}

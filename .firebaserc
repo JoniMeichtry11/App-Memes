@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "memes-1cd61"
+  },
+  "targets": {
+    "memes-1cd61": {
+      "hosting": {
+        "memes": [
+          "memes-1cd61"
+        ]
+      }
+    }
+  }
+}
