@@ -1,37 +1,44 @@
 <div class="d-flex mt-5 col-sm justify-content-center">
-  <div class="card" style="min-width: 18rem; max-width: 50rem;">
-
+  <div class="card" style="min-width: 18rem; max-width: 50rem">
     <div #preview class="subirPreview">
-      <img [src]="url" style="width: 300px; height: 300px;"/>
+      <img [src]="url" style="width: 300px; height: 300px" />
     </div>
 
-    <form>
-      <div class="subir">
-        <input id="fichero" type="file" name="myMeme" (change)="onselectFile($event)"/>
+    <form [formGroup]="form" (ngSubmit)="crearMeme()">
+      <div class="subir" #fileInput>
+        <input
+          id="fichero"
+          type="file"
+          name="myMeme"
+          formControlName="file"
+          (change)="onselectFile($event)"
+          (change)="subirMeme($event)"
+        />
         <label for="fichero" class="subir-label">
           <i class="fas fa-images"></i>
           Subir un meme
         </label>
       </div>
 
-      <div class="card-body" #deleteParrafo>
-        <p class="card-text">O sube un meme desde Instagram 😉</p>
-      </div>
-
-      <div class="card-body" #deleteInput>
-        <input type="text" placeholder="Link publicación de Instagram" class="form-control">
-      </div>
-
       <div class="card-body">
-        <input type="text" placeholder="Escribí una descripción del Meme" class="form-control">
+        <input
+          type="text"
+          placeholder="Escribí una descripción del Meme"
+          formControlName="description"
+          class="form-control"
+        />
       </div>
 
-      <button type="submit" class="btn btn-success" routerLink="../list-memes">Subir</button>
+      <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-success">Enviar ahora 🤩</button>
+      </div>
 
+      <!-- Spinner -->
+      <div *ngIf="loading" class="d-flex justify-content-center mb-4">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
     </form>
-
-
   </div>
-
 </div>
-
