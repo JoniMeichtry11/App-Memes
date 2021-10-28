@@ -1,10 +1,12 @@
-home
+Falta: 
 
-all-memes => list-memes
+Redirecionamiento [tal vez]
 
-Auth => Pages => Iniciar Sesion | Crear Usuario
+añadir una pre-carga
 
+Mejorar visual
 
+convertirla en PWA
 
 
 

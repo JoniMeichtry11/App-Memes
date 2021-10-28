@@ -1,7 +1,7 @@
-<div class="d-flex mt-5 col-sm justify-content-center">
-  <div class="card" style="min-width: 18rem; max-width: 50rem">
+<div class="d-flex col-lg justify-content-center">
+  <div class="card mt-5" style="width: 400px; min-width: 15rem; max-width: 50rem">
     <div #preview class="subirPreview">
-      <img [src]="url" style="width: 300px; height: 300px" />
+      <img [src]="url" class="card" style="width: 400px; height: 300px" />
     </div>
 
     <form [formGroup]="form" (ngSubmit)="crearMeme()">

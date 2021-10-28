@@ -1,10 +1,11 @@
+import { AutenticacionService } from './../../auth/services/autenticacion.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MemesModel } from 'src/app/models/MemesModel';
 import { MemesService } from 'src/app/services/memes.service';
 import { Router } from "@angular/router";
 import { AngularFireStorage } from '@angular/fire/storage';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-subir-memes',
@@ -17,11 +18,13 @@ export class SubirMemesComponent implements OnInit{
 
   form: FormGroup;
 
+  usuario: any;
+
   file = "";
 
   loading = false;
 
-  constructor(private firebase: AngularFirestore, private fb: FormBuilder, private _memeService: MemesService, private router: Router, private storage: AngularFireStorage) {
+  constructor(private fb: FormBuilder, private _memeService: MemesService, private autentication: AutenticacionService, private loadingService: LoadingService) {
     this.form = this.fb.group({
       file: [''],
       description: ['']
@@ -29,6 +32,13 @@ export class SubirMemesComponent implements OnInit{
   }
 
   ngOnInit(){
+    
+    // El nombre de usuario
+
+    this.autentication.userData.subscribe(user => {
+      this.usuario = user.displayName;
+      console.log("Este es el usuario", this.usuario);
+    })
   }
 
   url="";
@@ -58,6 +68,8 @@ export class SubirMemesComponent implements OnInit{
 
   crearMeme(){
 
+    this.loadingService.cargarSpinner();
+
     // Referencias
 
     this.loading = true;
@@ -68,30 +80,12 @@ export class SubirMemesComponent implements OnInit{
 
     // Storage
 
-    enviarMeme(this.file, this.form)
+    enviarMeme(this.file, this.form, this.usuario)
 
-    function enviarMeme(file: string, form: FormGroup){
-      memeServicio.setMeme(file, form);
+    function enviarMeme(file: string, form: FormGroup, usuario: any){
+      memeServicio.setMeme(file, form, usuario);
     }
 
-    // FireStore
-
   }
-
-  // subirFireStore(){
-
-  //   const MEME: MemesModel = {
-  //     file: "",
-  //     description: this.form.value.description
-  //   };
-
-  //   this._memeService.guardarMeme(MEME)
-  //     .then(() => {
-  //         console.log('Meme en imagen subido');
-  //         this.router.navigate(['/memes/list-memes']);
-  //       }, error => {
-  //         console.log(error);
-  //     })
-  // }
 
 }

@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AutenticacionService } from "./services/autenticacion.service";
 
 import { AuthRoutingModule } from './auth-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LogInComponent } from './pages/log-in/log-in.component';
 import { CreateUserComponent } from './pages/create-user/create-user.component';
@@ -14,7 +16,10 @@ import { CreateUserComponent } from './pages/create-user/create-user.component';
   ],
   imports: [
     CommonModule,
-    AuthRoutingModule
-  ]
+    AuthRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
+  providers: [AutenticacionService]
 })
 export class AuthModule { }

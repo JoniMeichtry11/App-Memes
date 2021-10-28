@@ -1,17 +1,29 @@
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center" *ngIf="autentication.userData | async">
   <button class="btn btn-success" style="position: fixed; z-index: 1; font-size: 20px;" routerLink="../subir-meme" type="button">Subir un Meme</button>
 </div>
 
-<div class="row">
+<div class="d-flex container" id="tarjeta">
 
   <div class="mt-5 col-sm" *ngFor="let meme of listMemes">
-    <div class="card" style="min-width: 400px;">
-      <p class="card-text text-center">"Usuario" envió este meme</p>
-      <img [src]="meme.file" class="card-img-top img-fluid" alt="meme de messi">
+    <div class="card mb-3">
+      <p class="card-text text-center mt-3" style="font-size: 190%; font-weight: 450;">😎 {{meme.usuario}} compartió este meme {{caritas[aleatorio]}}</p>
+      <div class="col-sm-12">
+        <img [src]="meme.file" class="card-img-top img-fluid" alt="ehehehe . .. . messi xd">
+      </div>
       <div class="card-body">
-        <p class="card-text">{{meme.description}}</p>
+        <p class="card-text text-center" style="font-size: 190%; font-weight: 300;">{{meme.description}}</p>
       </div>
     </div>
   </div>
 
+</div>
+
+<div #noMemes class="d-flex justify-content-center" style="color: white; font-size: 1.5rem; margin-top: 10vh; opacity: 0;" [ngStyle]="{'opacity': opacidad}">
+  <p>No hay mas memes 😓</p>
+</div>
+
+<div #noMemes class="d-flex flex-column justify-content-center align-items-center text-center" style="color: white; font-size: 1.5rem; margin-top: 10vh; opacity: 0;" [ngStyle]="{'opacity': opacidad}">
+  <p style="line-height : 35px;">¿Te gustaría subir tus propios memes también? 🤔</p>
+  <p style="line-height : 35px;">Ingresa con una cuenta a la App y podrás hacerlo 😀</p>
+  <button class="btn btn-primary mt-2" routerLink="../../auth">Iniciar Sesión</button>
 </div>

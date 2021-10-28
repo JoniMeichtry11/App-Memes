@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireStorage } from '@angular/fire/storage';
-import { MemesModel } from 'src/app/models/MemesModel';
 import { MemesService } from 'src/app/services/memes.service';
-import { Router } from "@angular/router";
+import { AutenticacionService } from 'src/app/auth/services/autenticacion.service';
+import { LoadingService } from 'src/app/services/loading.service';
+
 
 @Component({
   selector: 'app-list-memes',
@@ -11,11 +11,36 @@ import { Router } from "@angular/router";
 })
 export class ListMemesComponent implements OnInit {
 
+  public opacidad = 0;
+
   public listMemes: any[] = [];
 
-  constructor(private memeService: MemesService, private storage: AngularFireStorage, private router: Router) {}
+  public caritas = [
+    "(￣y▽,￣)╭ ",
+    "o(*°▽°*)o",
+    "☜(ﾟヮﾟ☜)",
+    "¯\_(ツ)_/¯",
+    "^_^",
+    "OwO",
+    "ヾ(≧ ▽ ≦)ゝ",
+    "( ͡• ͜ʖ ͡• )",
+    "( ͡~ ͜ʖ ͡°)",
+    "ԅ(¯﹃¯ԅ)",
+    "¯\_( ͡° ͜ʖ ͡°)_/¯",
+    "(★ ω ★)",
+    "(ʘ ͜ʖ ʘ)",
+    "(>'-'<)",
+    "ლ(╹◡╹ლ)",
+    "〜(￣▽￣〜)"
+  ];
+
+  public aleatorio = 0 + Math.floor(Math.random() * this.caritas.length);
+
+  constructor(private memeService: MemesService, public autentication: AutenticacionService, private loadingService: LoadingService) {}
 
   ngOnInit(){
+    this.loadingService.cargarSpinner();
+
     this.memeService.obtenerMeme()
     .subscribe((data: any) => {
       this.listMemes = [];
@@ -27,18 +52,21 @@ export class ListMemesComponent implements OnInit {
 
       });
 
-      console.log(this.listMemes);
+      setTimeout(() => {
+        this.loadingService.cerrarSpinner();
+      }, 1000);
 
-      this.meme();
+      setTimeout(() => {
+        this.opacidad = 1
+      }, 3000);
 
     });
-
-
-
   }
 
-  meme(){
-    console.log(this.listMemes);
-  }
+  // ⏬ Por el momento no lo necesito ⏬
+
+  // desLogueo(){
+  //   this.autentication.SignOut();
+  // }
 
 }

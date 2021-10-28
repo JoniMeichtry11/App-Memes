@@ -1,11 +1,86 @@
-<form>
-  <div class="form-group">
-    <label >Usuario</label>
-    <input type="text" class="form-control" placeholder="Escribe tu Nombre de Usuario">
+<div id="preloader" #preLoader></div>
+
+<div style="max-width: 1280px" class="d-flex justify-content-center">
+  <div class="card mt-5 text-white bg-dark col-lg-6 col-md-8 col">
+    <div class="card-header text-center p-3" style="font-size: 1.5rem;">
+      Crear usuario
+    </div>
+    <div class="card-body">
+      <form [formGroup]="group" (ngSubmit)="crearUsuario()">
+        <div class="form-group">
+          <label>Nombre</label>
+          <input
+            type="text"
+            class="form-control bg-dark text-white"
+            placeholder="Escribe tu Nombre"
+            formControlName="name"
+          />
+        </div>
+        <!-- Error  -->
+        <div
+          class="alert-danger mt-3"
+          style="border-radius: 3px; padding: 5px"
+          *ngIf="name?.invalid && (name?.dirty || name?.touched)"
+        >
+          <div class="container-error-message">
+            Escribe tu nombre por favor.
+          </div>
+        </div>
+
+        <div class="form-group mt-3">
+          <label>Email</label>
+          <input
+            type="email"
+            class="form-control bg-dark text-white"
+            placeholder="Escribe tu correo electronico"
+            formControlName="email"
+          />
+        </div>
+        <!-- Error  -->
+        <div
+          class="alert-danger mt-3"
+          style="border-radius: 3px; padding: 5px"
+          *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+        >
+          <div class="container-error-message">
+            Escribe un Email válido por favor.
+          </div>
+        </div>
+
+        <div class="form-group mt-3">
+          <label for="exampleInputPassword1">Contraseña</label>
+          <input
+            type="password"
+            class="form-control bg-dark text-white"
+            id="exampleInputPassword1"
+            placeholder="Escribe tu contraseña"
+            formControlName="password"
+          />
+        </div>
+        <!-- Error  -->
+        <div
+          class="alert-danger mt-3"
+          style="border-radius: 3px; padding: 5px"
+          *ngIf="password?.invalid && (password?.dirty || password?.touched)"
+        >
+          <div class="container-error-message">
+            Escribe una contraseña con un mínimo de 6 caracteres.
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-center">
+          <a>
+            <button
+              type="submit"
+              class="btn btn-primary mt-3 justify-content-center"
+              [disabled]="group.invalid"
+              (click)="crearUsuario()"
+            >
+              Crear Usuario
+            </button>
+          </a>
+        </div>
+      </form>
+    </div>
   </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Contraseña</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Escribe tu contraseña">
-  </div>
-  <button type="submit" class="btn btn-primary mt-3" routerLink="../auth">Crear Usuario</button>
-</form>
+</div>

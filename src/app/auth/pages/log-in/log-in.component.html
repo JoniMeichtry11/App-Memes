@@ -1,13 +1,99 @@
-<form>
-  <div class="form-group">
-    <label >Usuario</label>
-    <input type="text" class="form-control" placeholder="Escribe tu Nombre de Usuario">
+<div id="preloader" #preLoader></div>
+
+<div style="max-width: 1280px" class="d-flex justify-content-center">
+  <div class="card mt-5 text-white bg-dark col-lg-6 col-md-8 col">
+    <div class="card-header text-center p-3" style="font-size: 1.5rem">
+      Iniciar Sesión
+    </div>
+    <div class="card-body">
+      <form [formGroup]="group" (ngSubmit)="loginWhitEmail()">
+        <div class="form-group">
+          <label>Email</label>
+          <input
+            type="email"
+            class="form-control bg-dark text-white"
+            placeholder="Escribe tu correo electronico"
+            formControlName="email"
+            id="email"
+            name="email"
+          />
+        </div>
+        <!-- Error  -->
+        <div
+          class="alert-danger mt-3"
+          style="border-radius: 3px; padding: 5px"
+          *ngIf="Email?.invalid && (Email?.dirty || Email?.touched)"
+        >
+          <div class="container-error-message">
+            Escribe un Email válido por favor.
+          </div>
+        </div>
+
+        <div class="form-group mt-3">
+          <label for="exampleInputPassword1">Contraseña</label>
+          <input
+            type="password"
+            class="form-control bg-dark text-white"
+            id="exampleInputPassword1"
+            placeholder="Escribe tu contraseña"
+            formControlName="password"
+          />
+        </div>
+        <!-- Error  -->
+        <div
+          class="alert-danger mt-3"
+          style="border-radius: 3px; padding: 5px"
+          *ngIf="Password?.invalid && (Password?.dirty || Password?.touched)"
+        >
+          <div class="container-error-message">
+            Escribe tu contraseña por favor
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-center">
+          <a>
+            <button
+              type="submit"
+              class="btn btn-success mt-3 me-3 justify-content-center"
+              [disabled]="group.invalid"
+            >
+              Iniciar Sesión
+            </button>
+          </a>
+          <a>
+            <button
+              type="submit"
+              class="btn btn-light mt-3 ms-3 justify-content-center"
+              (click)="loginWhitGoogle()"
+            >
+              <i class="fab fa-google-plus-g"></i> Continuar con Google
+            </button>
+          </a>
+        </div>
+
+        <div
+          #errorMessage
+          class="alert-danger mt-3"
+          style="border-radius: 3px; padding: 5px; display: none"
+        >
+          <div class="container-error-message">
+            Tus datos de inicio de sesión son incorrectos. Intentalo de nuevo.
+          </div>
+        </div>
+
+        <div class="text-center mt-3">
+          <p>¿No tienes una cuenta?</p>
+          <p>Creala ahora mismo 🤗</p>
+        </div>
+
+        <div class="d-flex justify-content-center">
+          <a routerLink="../create-user">
+            <button class="btn btn-primary" type="button">
+              Crear una cuenta
+            </button>
+          </a>
+        </div>
+      </form>
+    </div>
   </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Contraseña</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Escribe tu contraseña">
-  </div>
-  <a routerLink="../../memes">
-    <button type="submit" class="btn btn-primary mt-3">Iniciar Sesion</button>
-  </a>
-</form>
+</div>
