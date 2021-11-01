@@ -1,10 +1,7 @@
 import { AutenticacionService } from './../../auth/services/autenticacion.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MemesService } from 'src/app/services/memes.service';
-import { Router } from "@angular/router";
-import { AngularFireStorage } from '@angular/fire/storage';
 import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
@@ -24,6 +21,14 @@ export class SubirMemesComponent implements OnInit{
 
   loading = false;
 
+  datos = {
+    "notification": {
+      "title": "Nuevo meme recibido :D",
+      "body": "El usuario a subido un nuevo meme"
+    },
+    "to":"cUerN-8k1jQePZmlfh_XaS:APA91bEj2P5I-GzVuaZYjYIuo8OM3dI1BWFBH6_3QeN5xxOUnjObKG0qWeC1WeRkpFgcE2xM4cB04M49Blm1-3uoNAiY0Te0WjTZYjQXL-q3aDoduZQSCqc_MrwP0QDPYrszIZ5rkvJg"
+  }
+
   constructor(private fb: FormBuilder, private _memeService: MemesService, private autentication: AutenticacionService, private loadingService: LoadingService) {
     this.form = this.fb.group({
       file: [''],
@@ -32,10 +37,10 @@ export class SubirMemesComponent implements OnInit{
   }
 
   ngOnInit(){
-    
+
     // El nombre de usuario
 
-    this.autentication.userData.subscribe(user => {
+    this.autentication.userData$.subscribe(user => {
       this.usuario = user.displayName;
       console.log("Este es el usuario", this.usuario);
     })

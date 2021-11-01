@@ -1,12 +1,12 @@
-<div class="d-flex justify-content-center" *ngIf="autentication.userData | async">
-  <button class="btn btn-success" style="position: fixed; z-index: 1; font-size: 20px;" routerLink="../subir-meme" type="button">Subir un Meme</button>
+<div class="d-flex justify-content-center" *ngIf="autentication.userData$ | async">
+  <button class="btn btn-success" style="position: fixed; z-index: 1; font-size: 25px;" routerLink="../subir-meme" type="button">Subir un Meme</button>
 </div>
 
-<div class="d-flex container" id="tarjeta">
 
+<div class="d-flex container" id="tarjeta">
   <div class="mt-5 col-sm" *ngFor="let meme of listMemes">
     <div class="card mb-3">
-      <p class="card-text text-center mt-3" style="font-size: 190%; font-weight: 450;">😎 {{meme.usuario}} compartió este meme {{caritas[aleatorio]}}</p>
+      <p class="card-text text-center mt-3" style="font-size: 190%; font-weight: 450; line-height : 35px;">😎 {{meme.usuario}} compartió este meme</p>
       <div class="col-sm-12">
         <img [src]="meme.file" class="card-img-top img-fluid" alt="ehehehe . .. . messi xd">
       </div>

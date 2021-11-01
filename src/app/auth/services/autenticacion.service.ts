@@ -9,10 +9,10 @@ import { LoadingService } from 'src/app/services/loading.service';
 })
 export class AutenticacionService {
 
-  public userData: Observable<any>;
+  public userData$: Observable<any>;
 
   constructor(private angularFireAuth: AngularFireAuth, private router: Router, private loadingService: LoadingService) {
-    this.userData = angularFireAuth.authState;
+    this.userData$ = angularFireAuth.authState;
   }
 
      /* Sign up */
@@ -47,9 +47,9 @@ export class AutenticacionService {
     })
   }
 
-//   /* Sign out */
-//   SignOut() {
-//     this.angularFireAuth.signOut();
-//     console.log("estas deslogueado");
-//   }
+  //   /* Sign out */
+  // SignOut() {
+  //   this.angularFireAuth.signOut();
+  //   console.log("estas deslogueado");
+  // }
 }

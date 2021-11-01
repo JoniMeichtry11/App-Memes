@@ -3,7 +3,6 @@ import { MemesService } from 'src/app/services/memes.service';
 import { AutenticacionService } from 'src/app/auth/services/autenticacion.service';
 import { LoadingService } from 'src/app/services/loading.service';
 
-
 @Component({
   selector: 'app-list-memes',
   templateUrl: './list-memes.component.html',
@@ -14,27 +13,6 @@ export class ListMemesComponent implements OnInit {
   public opacidad = 0;
 
   public listMemes: any[] = [];
-
-  public caritas = [
-    "(￣y▽,￣)╭ ",
-    "o(*°▽°*)o",
-    "☜(ﾟヮﾟ☜)",
-    "¯\_(ツ)_/¯",
-    "^_^",
-    "OwO",
-    "ヾ(≧ ▽ ≦)ゝ",
-    "( ͡• ͜ʖ ͡• )",
-    "( ͡~ ͜ʖ ͡°)",
-    "ԅ(¯﹃¯ԅ)",
-    "¯\_( ͡° ͜ʖ ͡°)_/¯",
-    "(★ ω ★)",
-    "(ʘ ͜ʖ ʘ)",
-    "(>'-'<)",
-    "ლ(╹◡╹ლ)",
-    "〜(￣▽￣〜)"
-  ];
-
-  public aleatorio = 0 + Math.floor(Math.random() * this.caritas.length);
 
   constructor(private memeService: MemesService, public autentication: AutenticacionService, private loadingService: LoadingService) {}
 
@@ -62,7 +40,6 @@ export class ListMemesComponent implements OnInit {
 
     });
   }
-
   // ⏬ Por el momento no lo necesito ⏬
 
   // desLogueo(){
