@@ -1,6 +1,6 @@
 import { AutenticacionService } from './../../auth/services/autenticacion.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MemesService } from 'src/app/services/memes.service';
 import { LoadingService } from 'src/app/services/loading.service';
 

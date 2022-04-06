@@ -27,7 +27,7 @@ export class ListMemesComponent implements OnInit {
           id: element.payload.doc.id,
           ...element.payload.doc.data()
         })
-
+        
       });
 
       setTimeout(() => {
